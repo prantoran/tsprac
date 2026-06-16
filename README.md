@@ -10,6 +10,7 @@ Create `tsconfig.json`
 ```bash
 tsc --init
 tsc
+node dist/index.js
 ```
 
 
