@@ -42,7 +42,7 @@ console.log(mySize); // 2
 
 
 function calculateTax(income: number, taxYear?: number): number {
-    if ( (taxYear || 2022) < 2022)
+    if ((taxYear || 2022) < 2022)
         return income * 1.2;
     return income * 1.3;
 }
@@ -53,7 +53,7 @@ let employee: {
     readonly id: number,
     name?: string,
     retire: (date: Date) => void;
-} = { 
+} = {
     id: 1,
     retire: (date: Date) => {
         console.log(date);
@@ -148,7 +148,7 @@ customer = getCustomer(0);
 console.log(customer?.birthday?.getFullYear());
 
 // Optional element access operator
-let customers: Customer[] = [ { birthday: new Date() } ];
+let customers: Customer[] = [{ birthday: new Date() }];
 console.log(customers?.[0]?.birthday?.getFullYear());
 
 // Optional call
@@ -156,7 +156,7 @@ let log: any = (message: string) => console.log(message);
 log?.("This is a log message.");
 
 // Generic functions
-function Display<T, U> (value1: T, value2: U): T & U {
+function Display<T, U>(value1: T, value2: U): T & U {
     return { ...value1, ...value2 };
 }
 
@@ -204,7 +204,7 @@ class UserClass2<T> {
 
 const user4 = new UserClass2<string>("Pinku");
 const user5 = new UserClass2<number>(123);
-const user6 = new UserClass2<{ name: string }>({name: "Pinku"});
+const user6 = new UserClass2<{ name: string }>({ name: "Pinku" });
 
 console.log(user4.greet());
 console.log(user5.greet());
@@ -214,7 +214,7 @@ console.log(user6.greet());
 function Gen<T extends { length: number }>(value: T): T {
     console.log("value.length: ", value.length);
     return value;
-} 
+}
 
 const val1 = Gen("Hello");
 console.log(val1);
@@ -224,3 +224,117 @@ console.log(val2);
 
 const val3 = Gen({ length: 10 });
 console.log(val3);
+
+
+function someFunc<T>(value: T): Promise<T> {
+    return new Promise((resolve) => setTimeout(() => {
+        resolve(value);
+    }, 1000));
+}
+
+const someValue = someFunc<string>("Hello, Someone!");
+someValue.then(value => console.log(value));
+
+
+// interface vs type
+
+interface AnimalInterface {
+    type: string;
+}
+
+interface Dog extends AnimalInterface {
+    bark(): void;
+}
+
+class Labrador implements Dog {
+    type: string = "Labrador1";
+    bark() {
+        console.log("Woof!");
+    }
+}
+
+const myDog: Dog = new Labrador();
+console.log(myDog.type);
+myDog.bark();
+
+type AnimalType = {
+    type: string;
+}
+
+type DogType = AnimalType & {
+    bark(): void;
+}
+
+const myDog2: DogType = {
+    type: "Labrador2",
+    bark() {
+        console.log("Woof!");
+    }
+};
+console.log(myDog2.type);
+myDog2.bark();
+
+
+// class accessors
+
+class ProductAccessors {
+    private _price: number;
+    private static nextID: number = 1;
+    private _id: number;
+
+    constructor(price: number) {
+        this._id = ProductAccessors.nextID++;
+        this._price = price;
+    }
+
+    get id(): number {
+        return this._id;
+    }
+
+    get price(): number {
+        return this._price;
+    }
+
+    set price(value: number) {
+        if (value <= 0) {
+            throw new Error("Price must be positive");
+        }
+        this._price = value;
+    }
+}
+
+const product = new ProductAccessors(100);
+console.log(product.id);
+console.log(product.price);
+product.price = 200;
+console.log(product.price);
+
+
+// abstract classess
+
+abstract class AbstractItem {
+    private static nextID: number = 1;
+    public readonly id: number;
+    constructor() {
+        this.id = AbstractItem.nextID++;
+    }
+    abstract print(): void;
+}
+
+class Product extends AbstractItem {
+    constructor(public name: string, public price: number) {
+        super();
+    }
+    print(): void {
+        console.log(`Product: ${this.name}, Price: ${this.price}`);
+    }
+}
+
+const product2 = new Product("Product2", 200);
+product2.print();
+
+
+// type assertion
+
+let data: any = "1000";
+console.log((data as string).repeat(3));
