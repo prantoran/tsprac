@@ -32,7 +32,7 @@
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false, // shortcut to enable export kw in global scope for CommonJS module
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "noImplicitAny": true,
@@ -40,6 +40,7 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
     "experimentalDecorators": true,
-    "useDefineForClassFields": false // Shortcut to enable this for property decorator for target: "esnext"
+    "useDefineForClassFields": false, // Shortcut to enable this for property decorator for target: "esnext"
+    // "moduleResolution": "NodeNext" // Might be useful to debug nested modules/packages with imports and re-exporting
   }
 }

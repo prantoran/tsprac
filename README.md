@@ -46,5 +46,11 @@ Add:
 }
 ```
 
+Module formats:
+- AMD
+- UMD
+- CommonJS
+- ES2015 / ES6
+
 Shortcuts:
 - F10: step-over
