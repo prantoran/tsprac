@@ -42,5 +42,7 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": false, // Shortcut to enable this for property decorator for target: "esnext"
     // "moduleResolution": "NodeNext" // Might be useful to debug nested modules/packages with imports and re-exporting
+    "allowJs": true,
+    "checkJs": true
   }
 }

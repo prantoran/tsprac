@@ -1,5 +1,5 @@
 
-
+## Cmds
 
 Transpile single `.ts` to `.js`
 ```bash
@@ -46,11 +46,24 @@ Add:
 }
 ```
 
-Module formats:
+## Modules 
+### Formats
 - AMD
 - UMD
 - CommonJS
 - ES2015 / ES6
 
-Shortcuts:
+### Using JS libraries
+```bash
+npm i lodash
+npm i --save-dev @types/lodash
+npm i i chalk
+```
+
+```js
+import * as _ from "lodash";
+```
+
+
+## Shortcuts:
 - F10: step-over
